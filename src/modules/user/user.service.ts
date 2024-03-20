@@ -42,9 +42,9 @@ export class UserService {
 
   async login(user: LoginUserDto) {
     const { data } = await this.wxUser(user.id)
-    if (!data.openid) {
-      throw new ForbiddenException('无效用户')
-    }
+    //if (!data.openid) {
+    //  throw new ForbiddenException('无效用户')
+    //}
     !(await this.hasUser(data.openid)) &&
       (await this.createUser(data.openid, user))
     return await this.findById(data.openid)
